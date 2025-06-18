@@ -33,28 +33,92 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+# in your <style> block (once at the top):
+st.markdown("""
+<style>
+.description-box {
+    direction: rtl;
+    text-align: right;
+    max-width: 600px;
+    margin: 1.5em auto;
+    background: #fff;
+    border: 1px solid #a5d6a7;
+    border-radius: 8px;
+    padding: 1.2em 1.5em;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+    text-align: justify;
+    color: #333;
+}
+</style>
+""", unsafe_allow_html=True)
+
+descriptions = {
+    543: """
+    מצפה מודיעין, הניצב על גבעה נקדמת בלב יער בן שמן, מציע תצפית פנורמית על מישור יהודה והרי ירושלים.
+     נקודת התצפית משמשת זה דורות אתר מנוחה לדרך המלך העתיקה שחיברה בין שפלת החוף למרכז הארץ. 
+     במאה ה־19 ביקר כאן חוקר הנופים אלברט בואן, שתיאר את נוף ההרים והגבעות סביב כ“ימין גן העדן העתיק”. 
+     היום, המטיילים עוצרים במקום כדי לחוש את רוח ההיסטוריה, לתצפת על שקיעות צבעוניות וליהנות מקפה חם לצד מצפור העץ הפשוט.
+    """,
+    514: """
+    בלב יער בן שמן, סמוך למצפה מודיעין, ניצבת הפגודה התאילנדית – ביתן מסורתי עשוי עץ ושיש בגווני זהב, אדום ולבן, המעוטר בסמלים מקודשים של התרבות התאילנדית.
+     המבנה נתרם במתנה לעם ישראל על ידי העם התאילנדי לציון 50 שנות עצמאות מדינת ישראל ו-50 שנות מלכותו של המלך בומיבל אדוליידי, ומהווה סמל לידידות בין שני העמים.
+      הפגודה מוקפת גדר ומונגשת לצפייה מחוץ לה, ומשקיפה על גבעות היער הצפוניות, יוצרת שילוב קסום של אדריכלות מזרחית ואווירת טבע פסטורלית.
+    """,
+    559: """
+    יער בן־שמן הוא אחד הפרויקטים הראשונים של קק״ל בארץ: כבר ב-1905 החלו חלוצי העלייה השנייה לשתול עצי חרוב, אלון וארז בעזרת מועקות ופרדות. 
+    העבודה התבצעה בעזרת מזחלות עץ ושטח בלתי סלול, כדי להיאבק בסחף ולייצב את הקרקע. 
+    במשך עשרות שנים ניטעו בעצי היער מאות אלפי עצים, והפכו את השטח המדברי שאפיין פעם את שפלת יהודה לחורש ירוק ומוצל.
+    """,
+    531: """
+    בתחילת מלחמת העצמאות באביב 1948 הפך יער בן שמן למבצע פלמ״ח מסתורי: לוחמים הסתתרו בסבך, ערכו מארבים לשיירות על כביש ירושלים, ושחררו נתיבי אספקה קריטיים. 
+    ב־12 באפריל, במסגרת מבצע נחשון, חוליית יפת״ח פוצצה מחסום ערביי סמוך וליוותה מעבר מטעני תרופות למוססים בעיר המצור. 
+    קרבות הקצרים אך העזים זיכו ללוחמים את הכינוי “פרטיזני השפלה” והדגימו את חשיבות היער בלוחמת גרילה על רקע מצבו המסוכן של היישוב.
+    """,
+    572: """
+    בין שבילי היער חובקים חובבי הציפורים: יותר מ-170 מיני עופות נצפים כאן במהלך השנה, בהם עיטים, שלדגים נדירים וציפורי חורף נודדות. 
+    כל עונה מביאה איתה תצפיות חדשות – מפרפרי כחול־זנב בחורף ועד נקרי סלע בסתיו. 
+    היער מהווה מוקד צפרות ותצפית, עם ציוד תצפית מוקצים במספר תחנות לאורך השבילים.
+    """,
+    528: """
+    בתל חדיד, בגובה 147 מ', שוכנים שרידי מחצבות עתיקות חצובות בגיר, ששימשו לדורות לבניית מבני היישובים הסמוכים. 
+    לצד המחצבות מצויים בורות מים, מערות, גת לדריכת ענבים ובתי בד עתיקים. 
+    חפירות משנת 1955 חשפו ריצפת פסיפס מהמאה השישית ובה תיאור ספינה על הנילוס והכתובת “איגיפטוס”, שהוצאה לאור ומוצגת כיום במוזיאון הימי בחיפה. 
+    המקום מעיד על עושרה ההיסטורי והכלכלי של האזור ומעניק הצצה לחיי היום־יום ולמסחר העתיקים ביער בן שמן.
+    """,
+    586: """
+    על מצלע גבעה בשפלת יער בן שמן, מתחבאים “קברי ארגז” – תשעה קברים מלבניים חצובים בסלע, עם אבני גולל רחבות שהשמשו לסגירתם. 
+    עוד במאה ה־19 זוהו כמקום קבורתם של החשמונאים, על סמך שמם הערבי “קובור אל־יהוד”, ומצבת אבן גדולה הוקמה לכבודם. 
+    חפירות ובדיקות ארכיאולוגיות חשפו סמוך אליהם שרידי כנסייה ביזנטית ומקווה רומאי, אך עתה יודעים שהקברים עצמם שייכים לתקופה הרומית. 
+    האתר משלב מסתורין ומגע היסטוריה עמוק באזור פסטורלי. 
+    """,
+    597: """
+    סינגל הרצל, המכונה “הכחול”, הוא מסלול רכיבה מעגלי בן כ-10.5 ק"מ ביער בן שמן שהוסדר על ידי קק"ל וקבוצות מתנדבים כחלק ממערכת שבילי היער. 
+    המסלול מציע טיפוס מתון של כ-250 מ' וירידות מהנות, ומקשר בין מצפה מודיעין לחלקים הפנימיים של היער. 
+    השביל מספק פיסת טבע פסטורלית במרחק קצר ממרכז הארץ ומשמש מפלט לרוכבי שטח בכל העונות.
+    """
+}
+
+
 team_riddles = {
     'Team1': {
     543: { # Mizpe Modiin - > HaPagoda
-        "description": "**Location 1:** Solve this riddle to find the first clue in the heart of Ben-Shemen forest...",  # longer description
         "answer": "5",
         "link": "https://www.google.com/maps/place/31%C2%B056'49.0%22N+34%C2%B057'24.6%22E",
         "images": ["DorelNav/dorelNavPhoto/514_1.jpeg", "DorelNav/dorelNavPhoto/514_2.jpeg", "DorelNav/dorelNavPhoto/514_3.jpeg"]  # add up to 3 image URLs or file paths here
     },
     514: { # HaPagoda -> Random location 1
-        "description": "**Location 2:** A second challenge awaits you among the pine trees...",
         "answer": "5",
         "link": "https://www.google.com/maps/place/31%C2%B056'46.2%22N+34%C2%B057'34.6%22E",
         "images": ["DorelNav/dorelNavPhoto/559_1.jpeg", "DorelNav/dorelNavPhoto/559_2.jpeg"]
     },
     559: { # Random location 1 -> The partisans
-        "description": "**Location 3:** The third puzzle is hidden near the old grove...",
         "answer": "5",
         "link": "https://www.google.com/maps/place/31%C2%B056'48.1%22N+34%C2%B057'20.6%22E",
         "images": ["DorelNav/dorelNavPhoto/531_1.jpeg"]
     },
     531: { # The partisans
-        "description": "**Location 4:** Almost there—figure this out to proceed to the clearing...",
         "answer": "5",
         "link": None,
         "images": []
@@ -62,25 +126,21 @@ team_riddles = {
 },
 'Team2':{
     543: { # Mizpe Modiin -> Random location 2
-        "description": "**Location 1:** Solve this riddle to find the first clue in the heart of Ben-Shemen forest...",  # longer description
         "answer": "5",
         "link": "https://www.google.com/maps/place/31%C2%B056'52.4%22N+34%C2%B057'33.0%22E",
         "images": ["DorelNav/dorelNavPhoto/572_1.jpeg", "DorelNav/dorelNavPhoto/572_2.jpeg"]  # add up to 3 image URLs or file paths here
     },
     572: { # Random location 2 -> Mahzeba
-        "description": "**Location 2:** A second challenge awaits you among the pine trees...",
         "answer": "5",
         "link": "https://www.google.com/maps/place/31%C2%B056'41.1%22N+34%C2%B057'34.7%22E",
         "images": ["DorelNav/dorelNavPhoto/528_1.jpeg", "DorelNav/dorelNavPhoto/528_2.jpeg"]
     },
     528: { # Mahzeba -> HaPagoda
-        "description": "**Location 3:** The third puzzle is hidden near the old grove...",
         "answer": "5",
         "link": "https://www.google.com/maps/place/31%C2%B056'49.0%22N+34%C2%B057'24.6%22E",
         "images": ["DorelNav/dorelNavPhoto/514_1.jpeg", "DorelNav/dorelNavPhoto/514_2.jpeg", "DorelNav/dorelNavPhoto/514_3.jpeg"]
     },
     514: { # HaPagoda
-        "description": "**Location 4:** Almost there—figure this out to proceed to the clearing...",
         "answer": "5",
         "link": None,
         "images": []
@@ -88,25 +148,21 @@ team_riddles = {
 },
 'Team3': {
     543: { # Mizpe Modiin -> Box Tombs
-        "description": "**Location 1:** Solve this riddle to find the first clue in the heart of Ben-Shemen forest...",  # longer description
         "answer": "5",
         "link": "https://www.google.com/maps/place/31%C2%B056'45.2%22N+34%C2%B057'11.4%22E",
         "images": ["DorelNav/dorelNavPhoto/586_1.jpeg", "DorelNav/dorelNavPhoto/586_2.jpeg"]  # add up to 3 image URLs or file paths here
     },
     586: { # Box Tombs -> Singel Herzel
-        "description": "**Location 2:** A second challenge awaits you among the pine trees...",
         "answer": "5",
         "link": "https://www.google.com/maps/place/31%C2%B056'42.8%22N+34%C2%B057'28.3%22E",
         "images": ["DorelNav/dorelNavPhoto/597_1.jpeg"]
     },
     597: { # Singel Herzel -> HaPagoda
-        "description": "**Location 3:** The third puzzle is hidden near the old grove...",
         "answer": "5",
         "link": "https://www.google.com/maps/place/31%C2%B056'49.0%22N+34%C2%B057'24.6%22E",
         "images": ["DorelNav/dorelNavPhoto/514_1.jpeg", "DorelNav/dorelNavPhoto/514_2.jpeg", "DorelNav/dorelNavPhoto/514_3.jpeg"]
     },
     514: { # HaPagoda
-        "description": "**Location 4:** Almost there—figure this out to proceed to the clearing...",
         "answer": "5",
         "link": None,
         "images": []
@@ -185,7 +241,7 @@ def main(team='Team1', alt_riddles=None):
             go_home();
             st.rerun()
 
-        st.text_area("Description", value=riddles[rid]['description'], height=200, disabled=True)
+        st.markdown(f"<div class='description-box'>{descriptions[rid]}</div>", unsafe_allow_html=True)
 
         if st.session_state[solved_key]:
             # Completed game or next link
