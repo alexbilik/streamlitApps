@@ -1,6 +1,7 @@
 import streamlit as st
 import streamlit.components.v1 as components
 import os
+from twilio.rest import Client
 
 # Page configuration and theming
 st.set_page_config(
@@ -172,6 +173,28 @@ team_riddles = {
 gathering_link = "https://www.google.com/maps/place/31%C2%B057'01.4%22N+34%C2%B057'20.0%22E"
 gathering_riddle_num = 560
 
+# Whatsapp configuration
+auth_token = ''
+account_sid = ''
+FROM_WHATSAPP = 'whatsapp:+14155238886'  # your Twilio Sandbox WhatsApp number
+TO_WHATSAPP = 'whatsapp:+972522957309'  # e.g. whatsapp:+972512345678
+
+# Function to send WhatsApp message using Twilio
+def send_whatsapp_message(body):
+    try:
+        client = Client(account_sid, auth_token)
+
+        message = client.messages.create(
+            from_=FROM_WHATSAPP,          # your Twilio Sandbox WhatsApp number
+            to=TO_WHATSAPP,  # e.g. whatsapp:+972512345678
+            body=body
+        )
+        return message.sid
+    except Exception as e:
+        print(f"Failed to send WhatsApp message: {e}")
+        # st.error(f"Failed to send WhatsApp message: {e}")
+
+
 # Reset to home
 def go_home():
     st.session_state['stage'] = 'select'
@@ -183,7 +206,7 @@ def get_google_maps_link(ggl_link):
 
 # Main app logic
 def main(team='Team1', alt_riddles=None):
-    global riddles
+    global riddles, account_sid, auth_token
     if alt_riddles:
         riddles = alt_riddles
     # Initialize session state
@@ -193,6 +216,9 @@ def main(team='Team1', alt_riddles=None):
         st.session_state['last_riddle'] = None
     if 'last_location' not in st.session_state:
         st.session_state['last_location'] = None
+
+    account_sid = os.getenv('TWILIO_ACCOUNT_SID')
+    auth_token = os.getenv('TWILIO_AUTH_TOKEN')
 
     # Home / selection page
     if st.session_state['stage'] == 'select':
@@ -263,12 +289,15 @@ def main(team='Team1', alt_riddles=None):
             user_ans = st.text_input("Your Answer", key='answer_input')
             if st.button("Submit"):
                 if user_ans.strip().lower() == riddles[rid]['answer']:
+                    # Correct answer
                     st.session_state[solved_key] = True
                     nxt = riddles[rid]['link'] or gathering_link
+                    send_whatsapp_message(f'{team} solved riddle {rid} correctly!\nNext location: {nxt}')
                     st.session_state['last_riddle'], st.session_state['last_location'] = rid, nxt
                     st.success("✅ Correct!")
                     if riddles[rid]['link'] is None:
                         st.balloons(); st.success("🎉 Congratulations! You've completed the game.")
+                        send_whatsapp_message(f'{team} completed the game! Gathering point: {gathering_link}')
                         st.markdown(f"**Gathering Point:** [Open in Google Maps]({gathering_link})")
                         components.iframe(get_google_maps_link(gathering_link), height=300, scrolling=False)
                     else:
@@ -279,6 +308,8 @@ def main(team='Team1', alt_riddles=None):
                             st.image(imgs, width=200) # , caption=[f"Point {rid} photo {i+1}" for i in range(len(imgs))])
                         st.info("Go to the next location and look for the envelop containing the next riddle")
                 else:
+                    # Wrong answer
+                    send_whatsapp_message(f'{team} answered riddle {rid} incorrectly: "{user_ans}" - expected "{riddles[rid]["answer"]}"')
                     st.error("❌ Wrong answer. Please try again.")
 
 if __name__ == "__main__":
