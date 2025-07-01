@@ -105,29 +105,29 @@ descriptions = {
 team_riddles = {
     'Team1': {
     543: { # Mizpe Modiin - > HaPagoda
-        "answer": "5",
+        "answer": "2",
         "link": "https://www.google.com/maps/place/31%C2%B056'49.0%22N+34%C2%B057'24.6%22E",
         "images": ["DorelNav/dorelNavPhoto/514_1.jpeg", "DorelNav/dorelNavPhoto/514_2.jpeg", "DorelNav/dorelNavPhoto/514_3.jpeg"]  # add up to 3 image URLs or file paths here
     },
     514: { # HaPagoda -> Random location 1
-        "answer": "5",
+        "answer": "6",
         "link": "https://www.google.com/maps/place/31%C2%B056'46.2%22N+34%C2%B057'34.6%22E",
         "images": ["DorelNav/dorelNavPhoto/559_1.jpeg", "DorelNav/dorelNavPhoto/559_2.jpeg"]
     },
     559: { # Random location 1 -> The partisans
-        "answer": "5",
+        "answer": "8",
         "link": "https://www.google.com/maps/place/31%C2%B056'48.1%22N+34%C2%B057'20.6%22E",
         "images": ["DorelNav/dorelNavPhoto/531_1.jpeg"]
     },
     531: { # The partisans
-        "answer": "5",
+        "answer": "8",
         "link": None,
         "images": []
     }
 },
 'Team2':{
     543: { # Mizpe Modiin -> Random location 2
-        "answer": "5",
+        "answer": "8",
         "link": "https://www.google.com/maps/place/31%C2%B056'52.4%22N+34%C2%B057'33.0%22E",
         "images": ["DorelNav/dorelNavPhoto/572_1.jpeg", "DorelNav/dorelNavPhoto/572_2.jpeg"]  # add up to 3 image URLs or file paths here
     },
@@ -137,19 +137,19 @@ team_riddles = {
         "images": ["DorelNav/dorelNavPhoto/528_1.jpeg", "DorelNav/dorelNavPhoto/528_2.jpeg"]
     },
     528: { # Mahzeba -> HaPagoda
-        "answer": "5",
+        "answer": "8",
         "link": "https://www.google.com/maps/place/31%C2%B056'49.0%22N+34%C2%B057'24.6%22E",
         "images": ["DorelNav/dorelNavPhoto/514_1.jpeg", "DorelNav/dorelNavPhoto/514_2.jpeg", "DorelNav/dorelNavPhoto/514_3.jpeg"]
     },
     514: { # HaPagoda
-        "answer": "5",
+        "answer": "2",
         "link": None,
         "images": []
     }
 },
 'Team3': {
     543: { # Mizpe Modiin -> Box Tombs
-        "answer": "5",
+        "answer": "8",
         "link": "https://www.google.com/maps/place/31%C2%B056'45.2%22N+34%C2%B057'11.4%22E",
         "images": ["DorelNav/dorelNavPhoto/586_1.jpeg", "DorelNav/dorelNavPhoto/586_2.jpeg"]  # add up to 3 image URLs or file paths here
     },
@@ -159,12 +159,12 @@ team_riddles = {
         "images": ["DorelNav/dorelNavPhoto/597_1.jpeg"]
     },
     597: { # Singel Herzel -> HaPagoda
-        "answer": "5",
+        "answer": "2",
         "link": "https://www.google.com/maps/place/31%C2%B056'49.0%22N+34%C2%B057'24.6%22E",
         "images": ["DorelNav/dorelNavPhoto/514_1.jpeg", "DorelNav/dorelNavPhoto/514_2.jpeg", "DorelNav/dorelNavPhoto/514_3.jpeg"]
     },
     514: { # HaPagoda
-        "answer": "5",
+        "answer": "8",
         "link": None,
         "images": []
     }
