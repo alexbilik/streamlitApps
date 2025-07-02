@@ -249,10 +249,12 @@ def main(team='Team1', alt_riddles=None):
                 st.error("Please enter a valid riddle number.")
             else:
                 if r_num in riddles:
+                    send_whatsapp_message(f'{team} arrived and found riddle: {r_num}')
                     st.session_state['current_riddle'] = r_num
                     st.session_state['stage'] = 'answer'
                     st.rerun()
                 else:
+                    send_whatsapp_message(f'{team} tried to access riddle {r_num} but it does not exist.')
                     st.error("Riddle number does not exist. Please try again.")
 
     # Answer page
