@@ -105,22 +105,22 @@ descriptions = {
 team_riddles = {
     'Team-Demo': {
     111: { # Mizpe Modiin - > HaPagoda
-        "answer": "2",
+        "answer": "1",
         "link": "https://www.google.com/maps/place/31%C2%B056'49.0%22N+34%C2%B057'24.6%22E",
         "images": ["DorelNav/dorelNavPhoto/514_1.jpeg", "DorelNav/dorelNavPhoto/514_2.jpeg", "DorelNav/dorelNavPhoto/514_3.jpeg"]  # add up to 3 image URLs or file paths here
     },
     222: { # HaPagoda -> Random location 1
-        "answer": "6",
+        "answer": "2",
         "link": "https://www.google.com/maps/place/31%C2%B056'46.2%22N+34%C2%B057'34.6%22E",
         "images": ["DorelNav/dorelNavPhoto/559_1.jpeg", "DorelNav/dorelNavPhoto/559_2.jpeg"]
     },
     333: { # Random location 1 -> The partisans
-        "answer": "8",
+        "answer": "3",
         "link": "https://www.google.com/maps/place/31%C2%B056'48.1%22N+34%C2%B057'20.6%22E",
         "images": ["DorelNav/dorelNavPhoto/531_1.jpeg"]
     },
     444: { # The partisans
-        "answer": "8",
+        "answer": "4",
         "link": None,
         "images": []
     }
